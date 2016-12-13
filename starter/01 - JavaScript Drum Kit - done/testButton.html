@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="ISO-8859-1">
+    <title>Button Test</title>
+ </head>
+ <body>
+    <div id="buttons">
+         <input type="button" value="this is a button"/>
+         <input type="button" value="this is another button"/>
+    </div>
+
+
+
+<script>
+  var myBtn = document.getElementById('buttons');
+
+  myBtn.addEventListener('click', function(event) {
+    window.location.href='http://www.google.com';
+  });
+
+</script>
+ </body>
+</html>
