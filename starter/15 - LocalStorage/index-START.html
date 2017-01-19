@@ -30,9 +30,42 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+  function addItem(e) {
+    //prevents the refresh of the page upon submitting the form
+    e.preventDefault();
+    const text = (this.querySelector('[name=item]')).value;
+    const item = {
+      text,
+      done: false
+    };
+    //add our item into array of objects (items)
+    items.push(item);
+    //called everytime we add an item into our list
+    //BUT! recreates the list EVERY time, so performance issues??
+    populateList(items, itemsList);
+    //resets the form
+    this.reset();
+  }
+
+  //plates === items
+  //default plates to empty array, in case no array is passed in
+  //platesList === itemsList (HTML element)
+  //more modular this way
+  function populateList(plates = [], platesList) {
+    platesList.innerHTML = plates.map((plate, i) => {
+      return `
+        <li>
+          <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
+          <label for="item${i}">${plate.text}</label>
+        </li>
+      `;
+    }).join('');
+  }
+  //use submit here instead of click
+  addItems.addEventListener('submit', addItem);
+
 </script>
 
 
 </body>
 </html>
-
